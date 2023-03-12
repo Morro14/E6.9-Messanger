@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'chat',
     'group_chat',
     'rest_framework',
-    'sorl.thumbnail',
+
 
 
 ]
