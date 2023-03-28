@@ -1,0 +1,19 @@
+{% extends 'default.html' %}
+
+{% block content %}
+
+<!-- {% load static %}
+<link href="{% static 'css/my-css.css' %}" rel="stylesheet" /> -->
+
+<h1 class="mt-4">Список польователей</h1>
+<div class="content-left-1">
+    <table class="user-list-result">
+        <tr>
+
+        </tr>
+    </table>
+    <a href="{% url 'chat' 'admin' %}">{{ user.username }}</a>
+
+</div>
+<script src="/static/js/user_list.js"></script>
+{% endblock content %}

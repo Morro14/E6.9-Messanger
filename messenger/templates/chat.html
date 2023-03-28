@@ -1,7 +1,31 @@
 {% extends 'default.html' %}
-<h1 class="mt-4">Chat</h1>
-<p>
-</p>
-<p>
 
-</p>
+
+{% block content %}
+
+<!-- {% load static %}
+<link href="{% static 'css/my-css.css' %}" rel="stylesheet" /> -->
+
+
+<div class="content-flex">
+
+    <div class="content-left-1">
+        <h3 class="mt-4">Chat #{{chat.id}}</h3>
+        <div class="content-left-1-element">
+            <div class="chat-window"></div>
+            <h6>Chat with {{target_user}}</h6>
+
+            <div class="content-left-1-element">
+                <input class="chat-input" role="textbox" placeholder="Type your message here" contenteditable="true">
+                <button type="submit" id="id-message-submit" hidden>Send Message</button>
+            </div>
+            <!-- <div class="content-left-1">
+        <div class="content-left-1-element">
+
+        </div>
+    </div>
+</div> -->
+            {{ chat.name|json_script:"chatName" }}
+            {{ user.username|json_script:"userName" }}
+            <script src="/static/js/chat.js"></script>
+            {% endblock content %}

@@ -24,6 +24,7 @@ from django.views.generic.base import RedirectView
 router = routers.DefaultRouter()
 router.register(r'chats', views.ChatViewSet)
 router.register(r'users', views.UserViewSet)
+router.register(r'messages', views.MessageViewSet)
 
 
 urlpatterns = [
@@ -31,9 +32,16 @@ urlpatterns = [
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('profile/', include('protect.urls')),
+    path('chat/', include('chat.urls')),
+
 ]
 
 
-if settings.DEBUG:
-        urlpatterns += static(settings.MEDIA_URL,
-                              document_root=settings.MEDIA_ROOT, )
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL,
+#                           document_root=settings.MEDIA_ROOT, )
+
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL,
+#                           document_root=settings.STATIC_ROOT, )

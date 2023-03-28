@@ -11,6 +11,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class ChatSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Chat
-        fields = ['id', 'name']
-        
-        
+        fields = ['id', 'name', 'users']
+
+
+class MessageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Message
+        fields = ['content', 'chat', 'user', 'timestamp']
