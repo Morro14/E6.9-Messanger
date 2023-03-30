@@ -34,6 +34,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('profile/', include('protect.urls')),
     path('chat/', include('chat.urls')),
+    path('sign/', include('sign.urls')),
 
 ]
 

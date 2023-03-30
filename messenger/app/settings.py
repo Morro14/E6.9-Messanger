@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 AUTH_USER_MODEL = 'chat.MyUser'
+LOGIN_REDIRECT_URL = '/chat'
+LOGOUT_REDIRECT_URL = '/sign/login'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend'
 ]
@@ -48,6 +50,7 @@ INSTALLED_APPS = [
     'group_chat',
     'rest_framework',
     'channels',
+    'sign',
 ]
 
 
