@@ -12283,22 +12283,26 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 }
 
 
-
-
-
 .content-flex {
   display: flex;
 }
 
 .content-left-1-element {
-  flex: auto;
+  /* flex: auto; */
   width: 600px;
+}
+
+
+.content-right {
+  padding-left: 10px;
+
 }
 
 .chat-window {
   height: 400px;
   overflow-y: scroll;
   scrollbar-width: thin;
+
 }
 
 .chat-input {

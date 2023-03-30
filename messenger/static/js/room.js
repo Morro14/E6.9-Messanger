@@ -1,4 +1,4 @@
-console.log('chat.js activated');
+console.log('room.js activated');
 
 let inputElement = document.querySelector(".chat-input");
 let chatOutputElement = document.querySelector(".chat-window");
@@ -6,7 +6,7 @@ let inputSubmitElement = document.querySelector("#id-message-submit");
 let userList = document.querySelector('#online-user-list');
 
 
-const chatPk = JSON.parse(document.getElementById('chatPk').textContent);
+const roomPk = JSON.parse(document.getElementById('roomPk').textContent);
 const username = JSON.parse(document.getElementById('userName').textContent);
 
 
@@ -45,7 +45,7 @@ function userListRemove(value) {
 let chatSocket = null;
 
 function chatWebSocket() {
-    chatSocket = new WebSocket("ws://" + window.location.host + "/ws/chat/" + chatPk + "/");
+    chatSocket = new WebSocket("ws://" + window.location.host + "/ws/room/" + roomPk + "/");
 
     chatSocket.onopen = function (e) {
         console.log("Connection is on!");
@@ -60,7 +60,7 @@ function chatWebSocket() {
         const data = JSON.parse(e.data);
 
         switch (data.type) {
-            case "chat_message":
+            case "room_message":
                 let div = document.createElement("div");
                 div.innerHTML = data.username + ": " + data.message;
                 chatOutputElement.appendChild(div);

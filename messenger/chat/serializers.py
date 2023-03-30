@@ -12,6 +12,12 @@ class ChatSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Chat
         fields = ['id', 'name', 'users']
+        
+        
+class RoomSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Room
+        fields = ['id', 'name', 'users']
 
 
 class MessageSerializer(serializers.HyperlinkedModelSerializer):

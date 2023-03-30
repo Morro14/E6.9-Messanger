@@ -1,0 +1,43 @@
+{% extends 'default.html' %}
+
+{% block content %}
+<style>
+    #content-left-1-element {
+        display: flex;
+    }
+
+    #search-room {
+        width: fit-content;
+    }
+</style>
+<h4 class="mt-4">User List</h4>
+Click to start a chat with the user:
+<div class="content-flex">
+    <div class="content-left-1">
+        <div class="content-left-1-element">
+            <table class="user-list-result">
+                <tr>
+
+                </tr>
+            </table>
+        </div>
+        <div class="content-left-1-element">
+            <h4 class="mt-4">Search for a chat room</h4>
+            <input class="search-room" id="search-bar" placeholder="Enter the chat room's name">
+            <button id="search-button">Search</button>
+            <a id="search-link" href=""></a>
+        </div>
+        <div class="content-left-1-element">
+            <h4 class="mt-4">Create a new chat room</h4>
+            <input class="search-room" id="create-bar" placeholder="Enter the chat room's name">
+            <button id="create-button">Create</button>
+            <a id="create-link" href=""></a>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/chat_create.js"></script>
+
+
+
+{% endblock content %}

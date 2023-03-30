@@ -1,10 +1,9 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.views import APIView
-from rest_framework import permissions
+from rest_framework import permissions, mixins
 from django.shortcuts import render, redirect
-from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
-from .forms import MessageForm
+from django.core.exceptions import ObjectDoesNotExist
+
 
 from .serializers import *
 from .models import *
@@ -20,6 +19,18 @@ class ChatViewSet(ModelViewSet):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
     permission_classes = [permissions.IsAdminUser]
+    
+    
+  
+class RoomViewSet(ModelViewSet):
+    queryset = Room.objects.all()
+    serializer_class = RoomSerializer
+    permission_classes = [permissions.IsAdminUser]
+    
+    def create(self, request, *args, **kwargs):
+        room = Room.objects.create(name=request.POST.get('name'))
+        room.save()
+        
 
 
 class MessageViewSet(ModelViewSet):
@@ -35,23 +46,32 @@ def user_list_view(request):
 @login_required
 def chat_view(request, username):
     user = request.user
-
     target_user = MyUser.objects.get(username=username)
-    chat_query = Chat.objects.filter(users=target_user).filter(users=user)
-    new_chat = None
-    if target_user == user:
-        return render(request, template_name='exception.html')
-    elif len(chat_query) != 1:
-        new_chat = Chat.objects.create()
-        new_chat.users.add(user)
-        new_chat.users.add(target_user)
-        new_chat.name = f'chat_with_{target_user}'
-        new_chat.save()
+    chat=None
 
-    elif len(chat_query) == 1:
-        new_chat = chat_query[0]
+    chat, created = Chat.objects.get_or_create(name=f'Chat with {target_user}')
+    if target_user == user:
+        return render(request, template_name='exception.html', context={'exception':'Cannot start chat with yourself'})
 
     context = {"user": user, "target_user": target_user,
-               "chat": new_chat, }
-
+               "chat": chat, }
     return render(request, template_name='chat.html', context=context)
+
+
+@login_required
+def chat_room_view(request, name):
+    user = request.user
+    room, created = Room.objects.get_or_create(name=name)  
+        
+    context = {"user": user, 
+               "room": room,
+            }
+
+    return render(request, template_name='chat_room.html', context=context)
+
+
+def chat_create_view(request):
+    return render(request, template_name='chat_main.html')
+
+
+

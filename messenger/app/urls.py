@@ -25,6 +25,7 @@ router = routers.DefaultRouter()
 router.register(r'chats', views.ChatViewSet)
 router.register(r'users', views.UserViewSet)
 router.register(r'messages', views.MessageViewSet)
+router.register(r'rooms', views.RoomViewSet)
 
 
 urlpatterns = [
@@ -37,9 +38,9 @@ urlpatterns = [
 ]
 
 
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL,
-#                           document_root=settings.MEDIA_ROOT, )
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT, )
 
 
 # if settings.DEBUG:

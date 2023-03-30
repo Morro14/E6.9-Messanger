@@ -9,8 +9,9 @@
     }
 </style>
 
-<h3 class="mt-4">Chat with {{ target_user }}</h3>
+<h3 class="mt-4">Chat room {{room.name}}</h3>
 <div class="content-flex">
+
     <div class="content-left-1">
         <div class="content-left-1-element">
             <div class="chat-window">
@@ -31,8 +32,8 @@
         </div>
     </div>
 </div>
-{{ chat.pk|json_script:"chatPk" }}
+{{ room.pk|json_script:"roomPk" }}
 {{ user.username|json_script:"userName" }}
 
-<script src="/static/js/chat.js"></script>
+<script src="/static/js/room.js"></script>
 {% endblock content %}

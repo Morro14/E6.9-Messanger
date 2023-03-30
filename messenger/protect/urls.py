@@ -1,9 +1,9 @@
 from django.urls import path
-from  .views import success, profile_view
+from  .views import profile_view, profile_picture_delete
 
 
 urlpatterns = [
     path('<str:slug>', profile_view, name='profile_view'),
-    path('success', success, name='success')
+    path('profile_picture_delete/<str:username>', profile_picture_delete, name="profile_picture_delete")
     
 ]
