@@ -3,20 +3,28 @@
 
 {% block content %}
 {% csrf_token %}
-<h1 class="mt-4">Профиль пользователя {{user.username}}</h1>
-<div class="content-left-1">
-    <img src="/media/{{ user.profile_picture }}" alt="Profile Picture">
+<h1 class="mt-4">Profile ({{user.username}})</h1>
+
+<img src="/media/{{ user.profile_picture }}" alt="Profile Picture">
+
+
+<div class="content-flex">
+    <!-- <div class="content-left-1-element">
+        <form id="form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{ form }}
+            </table>
+            <button type="submit" value="Submit">Upload</button>
+        </form>
+        <a href="{% url 'profile_picture_delete' user.username %}" id="delete-button"><button>Delete</button></a>
+        </table>
+    </div> -->
+    <a href="http://127.0.0.1:8000/users/{{ user.username }}/">Edit Profile (API)</a>
 </div>
-<p>
-<form id="form" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit" value="Submit">Upload</button>
 
-</form>
-
-<a href="{% url 'profile_picture_delete' user.username %}" id="delete-button"><button>Delete</button></a>
 {{ user.username|json_script:"username" }}
+
 
 <script src="/static/js/profile.js"></script>
 

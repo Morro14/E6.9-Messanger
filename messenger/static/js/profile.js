@@ -1,31 +1,23 @@
-// TODO DELETE BUTTON FOR PROFILE PICTURE
-// console.log('profile.js is loaded')
+let nameValue = document.querySelector("#name-change");
+let nameChangeButton = document.querySelector("#name-change-button");
+let user = JSON.parse(document.querySelector("#username").textContent);
 
 
-// user = document.querySelector('#username');
-// deleteButton = document.querySelector('#delete-button');
-// form = document.querySelector('#id_profile_picture');
 
-// const url = `http://127.0.0.1:8000/profile/` + user;
 
-// function deleteButtonRequest(url) {
-//     fetch(url, {
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json',
-//         },
-//         method: "POST",
-//         body: JSON.stringify({
-//             user: user,
-//             value: deleteButton.value
-//         })
-//     }).then(console.log("fetch request is sent")).catch(() => console.log('error'));
+function requestPost(name) {
+    fetch(`http://127.0.0.1:8000/users/${user}/`, {
+        method: "PATCH",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: { "username": name.value },
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+    }).then(console.log('Request has been sent.')).catch((e) => console.log(`Error ${e}`))
+}
+
+
+// nameChangeButton.onclick = function (e) {
+//     requestPost(nameValue);
 // };
-
-// deleteButton.addEventListener('click', () => {
-
-
-// });
-
-
-

@@ -2,7 +2,6 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework import permissions, mixins
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ObjectDoesNotExist
 
 
 from .serializers import *
@@ -12,35 +11,33 @@ from .models import *
 class UserViewSet(ModelViewSet):
     queryset = MyUser.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [permissions.IsAdminUser]
 
 
 class ChatViewSet(ModelViewSet):
     queryset = Chat.objects.all()
     serializer_class = ChatSerializer
-    permission_classes = [permissions.IsAdminUser]
-    
+    permission_classes = [permissions.IsAuthenticated]
     
   
 class RoomViewSet(ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
-    permission_classes = [permissions.IsAdminUser]
-    
-    def create(self, request, *args, **kwargs):
-        room = Room.objects.create(name=request.POST.get('name'))
-        room.save()
+    permission_classes = [permissions.IsAuthenticated]
         
 
 
 class MessageViewSet(ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
-    permission_classes = [permissions.IsAdminUser]
+    permission_classes = [permissions.IsAuthenticated]
 
 
 def user_list_view(request):
     return render(request, template_name='user_list.html')
+
+
+def api_view(request):
+    return render(request, template_name='api.html')
 
 
 @login_required

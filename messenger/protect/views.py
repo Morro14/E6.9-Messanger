@@ -7,12 +7,10 @@ def profile_view(request, slug):
     user_profile = MyUser.objects.get(username=slug)
     viewer = request.user
     form = None
-    
     if request.method == 'POST' and viewer == user_profile:
 
         form = FileUploadForm(request.POST, request.FILES)
         if form.is_valid():
-            print(user_profile)
             user_profile.profile_picture = request.FILES['profile_picture']
             user_profile.save()
             return redirect(f'/profile/{slug}')
@@ -26,7 +24,8 @@ def profile_view(request, slug):
 
 def profile_picture_delete(request, username):
     user = MyUser.objects.get(username=username)
-    user.profile_picture = 'no_profile_picture.png'
+    # user.profile_picture = 'no_profile_picture.png'
+    user.profile_picture = None
     user.save()
     return redirect(f'/profile/{username}')
 

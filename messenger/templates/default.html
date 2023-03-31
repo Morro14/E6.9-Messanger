@@ -24,9 +24,10 @@
                 <a class="list-group-item list-group-item-action list-group-item-light p-3"
                     href="{% url 'profile_view' user.username %}">Profile</a>
                 {% endif %}
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Users</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Chats</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Messages</a>
+                <!-- <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Users</a> -->
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/chat">Chats</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/chat/users">Users</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/api">API</a>
             </div>
         </div>
         <!-- Page content wrapper-->

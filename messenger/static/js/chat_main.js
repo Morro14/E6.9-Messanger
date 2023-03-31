@@ -1,4 +1,4 @@
-console.log('chat_create.js is active')
+console.log('chat_main.js is active')
 
 // user list
 function requestUserList(url, callback) {
@@ -39,7 +39,6 @@ function displayResults(apiData) {
 requestUserList('http://127.0.0.1:8000/users/', displayResults);
 
 // chat select/create
-
 async function getChatRoom(name) {
     let data = await fetch('http://127.0.0.1:8000/rooms/', {
         headers: {
@@ -67,11 +66,11 @@ let linkCreate = document.querySelector('#create-link');
 let createButton = document.querySelector("#create-button");
 let createBar = document.querySelector("#create-bar");
 
-searchButton.onclick = function (e) { roomNameCheck(searchBar.value, linkSearch); }
-createButton.onclick = function (e) { createRoom(createBar.value, linkCreate); }
+searchButton.onclick = function (e) { roomSearch(searchBar.value, linkSearch); }
+createButton.onclick = function (e) { roomCreate(createBar.value, linkCreate); }
 
-
-async function roomNameCheck(input, linkElem) {
+// room search function
+async function roomSearch(input, linkElem) {
     let chatName = await getChatRoom(input);
     console.log(chatName);
     if (chatName !== null) {
@@ -81,7 +80,8 @@ async function roomNameCheck(input, linkElem) {
 
 }
 
-async function createRoom(input, linkElem) {
+// room create function
+async function roomCreate(input, linkElem) {
     let chatName = await getChatRoom(input);
     if (chatName == null) {
         linkElem.setAttribute("href", `http://127.0.0.1:8000/chat/room/${input}`);

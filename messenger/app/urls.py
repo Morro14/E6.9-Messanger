@@ -20,6 +20,7 @@ from chat import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic.base import RedirectView
+from chat.views import api_view
 
 router = routers.DefaultRouter()
 router.register(r'chats', views.ChatViewSet)
@@ -35,6 +36,7 @@ urlpatterns = [
     path('profile/', include('protect.urls')),
     path('chat/', include('chat.urls')),
     path('sign/', include('sign.urls')),
+    path('api/', api_view),
 
 ]
 

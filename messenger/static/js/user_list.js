@@ -32,7 +32,7 @@ function displayResults(apiData) {
     let names = '';
 
     apiData.results.forEach(item => {
-        const userName = `<tr><td class="item-list"><a href="/chat/${item.username}" %}">${item.username}</a></td></tr>`;
+        const userName = `<tr><td class="item-list"><a href="/profile/${item.username}" %}">${item.username}</a></td></tr>`;
         names = names + userName;
     });
     resultNode.innerHTML = names;
